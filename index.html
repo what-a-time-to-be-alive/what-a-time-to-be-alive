@@ -8,9 +8,12 @@
         <button id="theButton">i dare you</button>
         <script>
             var button = document.getElementById('theButton');
+            var resources = ['catSpace.jpg', '3dGlassesCat.gif', 'laserSpaceCat.jpg', 'pizzaSpaceCat.jpg', 'tacoSpaceCat.jpg'];
 
             button.addEventListener("click", function() {
-                window.location.href = window.location.href + '/resources/catSpace.jpg';
+                var image = resources[Math.floor(Math.random() * resources.length)];
+
+                window.location.href = window.location.href + '/resources/' + image;
             });
         </script>
     </body>
