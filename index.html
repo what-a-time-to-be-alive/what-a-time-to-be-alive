@@ -12,13 +12,19 @@
         <script>
             var button = document.getElementById('theButton');
             var img = document.getElementById('pictureGoesHere');
+            var xhttp = new XMLHttpRequest();
 
-            var resources = ['catSpace.jpg', '3dGlassesCat.gif', 'laserSpaceCat.jpg', 'pizzaSpaceCat.jpg', 'tacoSpaceCat.jpg'];
+            xhttp.open("GET", "http://api.giphy.com/v1/gifs/search?q=space+cat&api_key=dc6zaTOxFJmzC", true);
+            xhttp.send();
 
             button.addEventListener("click", function() {
-                var image = resources[Math.floor(Math.random() * resources.length)];
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    var jsonArray = JSON.parse(xhttp.responseText).data;
 
-                img.src = window.location.href + '/resources/' + image;
+                    var item = jsonArray[Math.floor(Math.random() * jsonArray.length)];
+
+                    img.src = item.images.original.url;
+                }
             });
         </script>
     </body>
