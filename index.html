@@ -5,15 +5,20 @@
         <script src="js/main.js"></script>
     </head>
     <body>
-        <button id="theButton">i dare you</button>
+        <button class="action" id="theButton">i dare you</button>
+
+        <img class="cat-pic" id="pictureGoesHere" src="" />
+
         <script>
             var button = document.getElementById('theButton');
+            var img = document.getElementById('pictureGoesHere');
+
             var resources = ['catSpace.jpg', '3dGlassesCat.gif', 'laserSpaceCat.jpg', 'pizzaSpaceCat.jpg', 'tacoSpaceCat.jpg'];
 
             button.addEventListener("click", function() {
                 var image = resources[Math.floor(Math.random() * resources.length)];
 
-                window.location.href = window.location.href + '/resources/' + image;
+                img.src = window.location.origin + '/resources/' + image;
             });
         </script>
     </body>

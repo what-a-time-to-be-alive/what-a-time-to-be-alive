@@ -1,0 +1,11 @@
+.action, .cat-pic {
+    display: block;
+}
+
+.action {
+    vertical-align: top;
+}
+
+.cat-pic {
+    max-height: 400px
+}
