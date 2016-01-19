@@ -1,11 +1,25 @@
+body {
+    background-color: #202020;
+}
+
 .action, .cat-pic {
     display: block;
 }
 
 .action {
+    background-color: blue;
+    border-width: 0;
+    clear: both;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    margin: 20px auto;
+    padding: 20px 32px;
     vertical-align: top;
 }
 
 .cat-pic {
+    clear: both;
+    margin: 0 auto;
     max-height: 400px
 }
