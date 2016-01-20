@@ -6,26 +6,41 @@
         <script src="js/main.js"></script>
     </head>
     <body>
-        <button class="action" id="theButton">Bet you wont</button>
+        <img class="loading" id="loading" src="http://i.kinja-img.com/gawker-media/image/upload/bwr62518kjnqgejq9nkv.jpg" />
+
+        <button class="action hide" id="theButton">Bet you wont</button>
 
         <img class="cat-pic" id="pictureGoesHere" src="" />
 
         <script>
             var button = document.getElementById('theButton');
+            var loading = document.getElementById('loading');
             var img = document.getElementById('pictureGoesHere');
             var xhttp = new XMLHttpRequest();
+            var array = [];
 
+            function transferComplete() {
+                array = JSON.parse(this.responseText).data;
+
+                loading.classList.add('hide');
+
+                button.classList.remove('hide');
+
+                return array;
+            }
+
+            function returnItem(array) {
+                return array[Math.floor(Math.random() * array.length)];
+            }
+
+            xhttp.addEventListener("load", transferComplete);
             xhttp.open("GET", "http://api.giphy.com/v1/gifs/search?q=space+cat&api_key=dc6zaTOxFJmzC", true);
             xhttp.send();
 
             button.addEventListener("click", function() {
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    var jsonArray = JSON.parse(xhttp.responseText).data;
-
-                    var item = jsonArray[Math.floor(Math.random() * jsonArray.length)];
+                    var item = returnItem(array);
 
                     img.src = item.images.original.url;
-                }
             });
         </script>
     </body>
