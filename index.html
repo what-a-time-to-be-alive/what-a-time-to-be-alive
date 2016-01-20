@@ -1,14 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="">
     <head>
-        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="resources/favicon.ico" rel="shortcut icon" type="image/x-icon">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/main.js"></script>
     </head>
     <body>
-        <img class="loading" id="loading" src="http://i.kinja-img.com/gawker-media/image/upload/bwr62518kjnqgejq9nkv.jpg" />
-
         <button class="action hide" id="theButton">Bet you wont</button>
+
+        <img class="loading" id="loading" src="resources/OGSpaceCat.jpg" />
 
         <img class="cat-pic" id="pictureGoesHere" src="" />
 
@@ -40,7 +40,14 @@
             button.addEventListener("click", function() {
                     var item = returnItem(array);
 
+                    loading.classList.remove('hide');
+                    img.classList.add('hide');
                     img.src = item.images.original.url;
+
+                    setTimeout(function() {
+                        loading.classList.add('hide');
+                        img.classList.remove('hide');
+                    }, 1000)
             });
         </script>
     </body>
