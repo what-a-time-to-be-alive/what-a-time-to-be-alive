@@ -30,7 +30,7 @@ body {
 .loading {
     display: block;
     margin: auto;
-    width: 25%;
+    width: 100%;
     -webkit-animation-name: spin;
     -webkit-animation-duration: 1000ms;
     -webkit-animation-iteration-count: infinite;
