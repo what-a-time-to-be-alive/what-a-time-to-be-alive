@@ -60,7 +60,8 @@ body {
 .cat-pic {
     clear: both;
     margin: 0 auto;
-    max-height: 400px
+    max-height: 400px;
+    width: 100%;
 }
 
 .hide {
