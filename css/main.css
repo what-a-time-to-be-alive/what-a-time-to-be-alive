@@ -61,9 +61,15 @@ body {
     clear: both;
     margin: 0 auto;
     max-height: 400px;
-    width: 100%;
 }
 
 .hide {
     display: none;
+}
+
+@media screen and (max-width: 768px)  {
+    .cat-pic {
+        height: auto;
+        width: 100%;
+    }
 }
