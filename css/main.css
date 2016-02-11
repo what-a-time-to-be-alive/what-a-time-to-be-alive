@@ -67,6 +67,16 @@ body {
     display: none;
 }
 
+.issues-container {
+    padding: 3em 0;
+    text-align: center;
+    width: 100%;
+}
+
+.issues-link {
+    color: #FFF;
+}
+
 @media screen and (max-width: 768px)  {
     .cat-pic {
         height: auto;
