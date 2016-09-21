@@ -5,8 +5,11 @@
 		<link rel="stylesheet" href="css/main.css">
 		<script src="js/main.js"></script>
 	</head>
+
 	<body>
 		<button class="action hide" id="theButton">Bet you wont</button>
+
+		<audio class="meow" id="meow"></audio>
 
 		<img class="loading" id="loading" src="resources/OGSpaceCat.jpg" />
 
@@ -18,10 +21,19 @@
 
 		<script>
 			var button = document.getElementById('theButton');
+			var meow = document.getElementById('meow');
 			var loading = document.getElementById('loading');
 			var img = document.getElementById('pictureGoesHere');
 			var xhttp = new XMLHttpRequest();
 			var array = [];
+
+			var meowSrcArray = [
+				'./resources/audio/meow-1.mp3',
+				'./resources/audio/meow-2.mp3',
+				'./resources/audio/meow-3.mp3',
+				'./resources/audio/meow-4.mp3',
+				'./resources/audio/meow-5.mp3'
+			]
 
 			function transferComplete() {
 				array = JSON.parse(this.responseText).data;
@@ -42,16 +54,23 @@
 			xhttp.send();
 
 			button.addEventListener("click", function() {
-					var item = returnItem(array);
+				var item = returnItem(array);
+				var audioMeow = returnItem(meowSrcArray);
 
-					loading.classList.remove('hide');
-					img.classList.add('hide');
-					img.src = item.images.original.url;
+				meow.setAttribute("src", audioMeow);
 
-					setTimeout(function() {
-						loading.classList.add('hide');
-						img.classList.remove('hide');
-					}, 1000)
+				meow.play();
+
+				console.log(meow);
+
+				loading.classList.remove('hide');
+				img.classList.add('hide');
+				img.src = item.images.original.url;
+
+				setTimeout(function() {
+					loading.classList.add('hide');
+					img.classList.remove('hide');
+				}, 1000)
 			});
 		</script>
 	</body>
