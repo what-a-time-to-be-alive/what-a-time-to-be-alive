@@ -31,10 +31,10 @@ p {
     display: block;
 }
 
-.loading {
+.loading > img {
     display: block;
     margin: auto;
-    width: 100%;
+    width: 50%;
     -webkit-animation-name: spin;
     -webkit-animation-duration: 1000ms;
     -webkit-animation-iteration-count: infinite;
@@ -47,6 +47,11 @@ p {
     animation-duration: 1000ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+}
+
+.loading > img:last-child {
+    top: -225px;
+    position: relative;
 }
 
 .action {
