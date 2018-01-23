@@ -1,78 +1,85 @@
 <!doctype html>
 <html class="no-js" lang="">
-	<head>
-		<link href="resources/favicon.ico" rel="shortcut icon" type="image/x-icon">
-		<link rel="stylesheet" href="css/main.css">
-		<script src="js/main.js"></script>
-	</head>
 
-	<body>
-		<button class="action hide" id="theButton">Bet you wont</button>
+<head>
+	<link href="resources/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/main.js"></script>
+</head>
 
-		<audio class="meow" id="meow"></audio>
+<body>
+	<button class="action hide" id="theButton">Bet you wont</button>
 
-		<img class="loading" id="loading" src="resources/OGSpaceCat.jpg" />
+	<audio class="meow" id="meow"></audio>
 
-		<img class="cat-pic" id="pictureGoesHere" src="" />
+	<img class="loading" id="loading" src="resources/OGSpaceCat.jpg" />
 
-		<div class="issues-container">
-			<a class="issues-link" href="https://github.com/what-a-time-to-be-alive/what-a-time-to-be-alive/issues" target="_blank">Help us improve this site.</a>
-		</div>
+	<img class="cat-pic" id="pictureGoesHere" src="" />
 
-		<script>
-			var button = document.getElementById('theButton');
-			var meow = document.getElementById('meow');
-			var loading = document.getElementById('loading');
-			var img = document.getElementById('pictureGoesHere');
-			var xhttp = new XMLHttpRequest();
-			var array = [];
+	<div class="issues-container">
+		<a class="issues-link" href="https://github.com/what-a-time-to-be-alive/what-a-time-to-be-alive/issues" target="_blank">Help us improve this site.</a>
+	</div>
 
-			var meowSrcArray = [
-				'./resources/audio/meow-1.mp3',
-				'./resources/audio/meow-2.mp3',
-				'./resources/audio/meow-3.mp3',
-				'./resources/audio/meow-4.mp3',
-				'./resources/audio/meow-5.mp3',
-				'./resources/audio/meow-6.mp3',
-				'./resources/audio/meow-7.mp3',
-				'./resources/audio/meow-8.mp3',
-			];
+	<script>
+		var button = document.getElementById('theButton');
+		var meow = document.getElementById('meow');
+		var loading = document.getElementById('loading');
+		var img = document.getElementById('pictureGoesHere');
+		var xhttp = new XMLHttpRequest();
+		var array = [];
 
-			function transferComplete() {
-				array = JSON.parse(this.responseText).data;
+		var meowSrcArray = [
+			'./resources/audio/meow-1.mp3',
+			'./resources/audio/meow-2.mp3',
+			'./resources/audio/meow-3.mp3',
+			'./resources/audio/meow-4.mp3',
+			'./resources/audio/meow-5.mp3',
+			'./resources/audio/meow-6.mp3',
+			'./resources/audio/meow-7.mp3',
+			'./resources/audio/meow-8.mp3',
+		];
 
+		function transferComplete() {
+			array = JSON.parse(this.responseText).data;
+
+			loading.classList.add('hide');
+
+			button.classList.remove('hide');
+
+			return array;
+		}
+
+		function returnItem(array) {
+			return array[Math.floor(Math.random() * array.length)];
+		}
+
+		xhttp.addEventListener("load", transferComplete);
+		xhttp.open("GET", "http://api.giphy.com/v1/gifs/search?q=space+cat&api_key=dc6zaTOxFJmzC", true);
+		xhttp.send();
+
+		button.addEventListener("click", function () {
+			var item = returnItem(array);
+			var audioMeow = returnItem(meowSrcArray);
+
+			meow.setAttribute("src", audioMeow);
+
+			loading.classList.remove('hide');
+			img.classList.add('hide');
+			img.src = item.images.original.url;
+
+			setTimeout(function () {
 				loading.classList.add('hide');
+				img.classList.remove('hide');
 
-				button.classList.remove('hide');
+				meow.play();
+			}, 1000)
+		});
+	</script>
+</body>
+<footer>
+	<p>
+		<img src=./resources/GiphyLogo.png alt="Powered By Giphy.com">
+	</p>
+</footer>
 
-				return array;
-			}
-
-			function returnItem(array) {
-				return array[Math.floor(Math.random() * array.length)];
-			}
-
-			xhttp.addEventListener("load", transferComplete);
-			xhttp.open("GET", "http://api.giphy.com/v1/gifs/search?q=space+cat&api_key=dc6zaTOxFJmzC", true);
-			xhttp.send();
-
-			button.addEventListener("click", function() {
-				var item = returnItem(array);
-				var audioMeow = returnItem(meowSrcArray);
-
-				meow.setAttribute("src", audioMeow);
-
-				loading.classList.remove('hide');
-				img.classList.add('hide');
-				img.src = item.images.original.url;
-
-				setTimeout(function() {
-					loading.classList.add('hide');
-					img.classList.remove('hide');
-
-					meow.play();
-				}, 1000)
-			});
-		</script>
-	</body>
 </html>

@@ -23,6 +23,10 @@ body {
     background-color: #202020;
 }
 
+p {
+    text-align:center;
+}
+
 .action, .cat-pic {
     display: block;
 }
